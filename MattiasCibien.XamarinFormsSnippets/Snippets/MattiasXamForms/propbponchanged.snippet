@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Bindable Property with Changed Handler</Title>
+      <Shortcut>propbpc</Shortcut>
+      <Description>Code snippet for Xamarin.Forms bindable property</Description>
+      <Author>Mattias Cibien</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>name</ID>
+          <ToolTip>Property Name</ToolTip>
+          <Default>name</Default>
+        </Literal>
+        <Literal>
+          <ID>type</ID>
+          <ToolTip>Property Type</ToolTip>
+          <Default>object</Default>
+        </Literal>
+        <Literal>
+          <ID>classname</ID>
+          <ToolTip>The class name of the current property</ToolTip>
+          <Default>myClass</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+      <![CDATA[#region $name$
+
+public static BindableProperty $name$Property = BindableProperty.Create(nameof($name$), typeof($type$), typeof($classname$), propertyChanged: On$name$Changed);
+
+public $type$ $name$
+{
+    get => ($type$)GetValue($name$Property);
+    set => SetValue($name$Property, value);
+}
+
+private static void On$name$Changed(BindableObject bindable, object oldValue, object newValue)
+{
+    var self = ($classname$)bindable;
+    var old$name$ = ($type$)oldValue;
+    var new$name$ = ($type$)newValue;
+
+    // implement here
+}
+
+#endregion $name$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
